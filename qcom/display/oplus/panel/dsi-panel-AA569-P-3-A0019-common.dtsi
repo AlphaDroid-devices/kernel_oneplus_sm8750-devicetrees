@@ -49,13 +49,14 @@
 				];
 
 				qcom,mdss-dsi-lp1-command = [
-					/* 0x81 on page 0x1E is PeakLumin dimming; OFP rewrites
-					 * 0x00/0x10 from aod_light_mode before this is sent. */
+					/* 0x51 is ignored after enter_idle (0x39). Send DBV
+					 * first so it latches; OFP rewrites 0x51 and page 0x1E
+					 * 0x81 from aod_light_mode. */
 					39 00 00 40 00 00 04 FF 5A A5 1E
 					39 00 00 40 00 00 02 81 00
 					39 00 00 40 00 00 04 FF 5A A5 00
+					39 00 00 40 00 00 05 51 00 00 0C D4
 					15 00 00 00 0C 00 02 39 00
-					39 00 00 00 00 00 05 51 00 00 0C D4
 				];
 				qcom,mdss-dsi-nolp-command = [
 					39 00 00 40 00 00 04 FF 5A A5 1E
@@ -100,10 +101,10 @@
 					39 00 00 40 00 00 04 FF 5A A5 23
 					15 00 00 40 00 00 02 AC 5A
 					39 00 00 40 00 00 04 FF 5A A5 00
+					39 00 00 40 00 00 05 51 00 00 0C D4
 					15 00 00 40 00 00 02 39 00
 					39 00 00 40 00 00 04 FF 5A A5 4F
 					15 00 00 00 0C 00 02 8B 69
-					39 00 00 00 00 00 05 51 00 00 0C D4
 				];
 				qcom,mdss-dsi-aod-off-pwm-mode2-command = [
 					39 00 00 40 00 00 04 FF 5A A5 4F
